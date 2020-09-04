@@ -1,9 +1,8 @@
 <mat-toolbar
-  [ngStyle]="{ background: color }"
-  [color]="color"
   class="topbar"
   fxLayout="row nowrap"
   fxLayoutAlign="space-between center"
+  *ngIf="breadcrumbs.length > 1"
 >
   <ol class="breadcrumb" [ngClass]="{ noPad: !this.pad }" fxFlex>
     <ng-container *ngFor="let breadcrumb of breadcrumbs; last as isLast">

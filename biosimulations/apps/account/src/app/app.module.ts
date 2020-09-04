@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { SharedUiModule } from '@biosimulations/shared/ui';
 import { environment } from '@biosimulations/shared/environments';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,14 +34,16 @@ import { CommonModule } from '@angular/common';
         },
         { path: '', redirectTo: 'register', pathMatch: 'full' },
       ],
-      { initialNavigation: 'enabled' },
+      { initialNavigation: 'enabled', scrollPositionRestoration: 'enabled' },
     ),
     SharedUiModule,
 
     HttpClientModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: {disabled: true}},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -12,7 +12,17 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NpnSliderModule } from "npn-slider";
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { MatTableModule } from '@angular/material/table';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatSortModule } from '@angular/material/sort';
 
 const materialImports = [
   FlexLayoutModule,
@@ -28,6 +38,16 @@ const materialImports = [
   MatProgressSpinnerModule,
   MatTooltipModule,
   MatExpansionModule,
+  MatMenuModule,
+  MatFormFieldModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  NpnSliderModule,
+  NgxMatFileInputModule,
+  MatTableModule,
+  DragDropModule,
+  MatSortModule,
 ];
 
 @NgModule({

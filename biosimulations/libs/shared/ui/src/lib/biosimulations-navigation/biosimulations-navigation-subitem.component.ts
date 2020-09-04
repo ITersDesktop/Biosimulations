@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'biosimulations-navigation-subitem',
   templateUrl: './biosimulations-navigation-subitem.component.html',
   styleUrls: ['./biosimulations-navigation-subitem.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BiosimulationsNavigationSubitemComponent {
   @Input()
-  title = '';
+  heading = '';
 
   @Input()
   icon = '';
