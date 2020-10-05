@@ -100,9 +100,7 @@
                   </mat-form-field>
 
                   <mat-list *ngSwitchDefault>
-                    <mat-list-item
-                      *ngFor="let value of column._filterData"
-                    >
+                    <mat-list-item *ngFor="let value of column._filterData">
                       <mat-checkbox
                         #checkbox
                         (change)="
@@ -123,7 +121,11 @@
   </mat-accordion>
 
   <div class="table-container">
-    <mat-table matSort class="biosimulations-table" [ngClass]="{'single-line-headings': singleLineHeadings}">
+    <mat-table
+      matSort
+      class="biosimulations-table"
+      [ngClass]="{ 'single-line-headings': singleLineHeadings }"
+    >
       <ng-container [matColumnDef]="column.id" *ngFor="let column of columns">
         <mat-header-cell
           *matHeaderCellDef
@@ -160,7 +162,9 @@
             <span [ngSwitch]="column.leftLinkType">
               <ng-template [ngSwitchCase]="'routerLink'">
                 <a
-                  *ngIf="element._cache[column.id].left.routerLink as routerLink"
+                  *ngIf="
+                    element._cache[column.id].left.routerLink as routerLink
+                  "
                   [routerLink]="routerLink"
                 >
                   <ng-container
@@ -213,7 +217,8 @@
                   "
                   [routerLink]="routerLink"
                 >
-                  <ng-container *ngTemplateOutlet="centerTemplate"
+                  <ng-container
+                    *ngTemplateOutlet="centerTemplate"
                   ></ng-container>
                 </a>
               </ng-template>
@@ -224,14 +229,14 @@
                   [href]="href"
                   target="_blank"
                 >
-                  <ng-container *ngTemplateOutlet="centerTemplate"
+                  <ng-container
+                    *ngTemplateOutlet="centerTemplate"
                   ></ng-container>
                 </a>
               </ng-template>
 
               <ng-template ngSwitchDefault>
-                <ng-container *ngTemplateOutlet="centerTemplate"
-                ></ng-container>
+                <ng-container *ngTemplateOutlet="centerTemplate"></ng-container>
               </ng-template>
 
               <ng-template #centerTemplate>
@@ -255,7 +260,14 @@
                   ></ng-container>
                 </a>
               </ng-template>
-
+              <ng-template [ngSwitchCase]="'function'">
+                <ng-container
+                  *ngTemplateOutlet="
+                    rightTemplateFunc;
+                    context: { icon: column.rightIcon, func: column.rightFunc }
+                  "
+                ></ng-container>
+              </ng-template>
               <ng-template [ngSwitchCase]="'href'">
                 <a
                   *ngIf="element._cache[column.id].right.href as href"
@@ -278,6 +290,15 @@
                     context: { icon: column.rightIcon }
                   "
                 ></ng-container>
+              </ng-template>
+
+              <ng-template #rightTemplateFunc let-icon="icon" let-func="func">
+                <biosimulations-icon
+                  *ngIf="icon"
+                  [icon]="question"
+                  (click)="func.bind(column.rightFunc)()"
+                  [title]="element._cache[column.id].right.iconTitle"
+                ></biosimulations-icon>
               </ng-template>
 
               <ng-template #rightTemplate let-icon="icon">

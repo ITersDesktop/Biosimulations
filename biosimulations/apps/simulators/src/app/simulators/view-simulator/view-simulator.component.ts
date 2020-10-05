@@ -219,7 +219,9 @@ export class ViewSimulatorComponent implements OnInit {
       heading: 'Image',
       key: 'image',
       rightIcon: 'link',
-      rightLinkType: ColumnLinkType.href,
+      rightLinkType: ColumnLinkType.function,
+      rightFuncThis: this,
+      rightFunc: this.copyDockerPullCmd,
       rightHref: (version: Version): string | null => {
         if (version.url === undefined) {
           return null;
@@ -326,7 +328,7 @@ export class ViewSimulatorComponent implements OnInit {
     });
   }
 
-  copyDockerPullCmd(image = '{ image }'): void {
+  copyDockerPullCmd(image = this.image): void {
     const cmd = 'docker pull ' + image;
     navigator.clipboard.writeText(cmd);
   }

@@ -1,6 +1,7 @@
 export enum ColumnLinkType {
   routerLink = 'routerLink',
   href = 'href',
+  function = 'function'
 }
 
 export enum ColumnFilterType {
@@ -32,6 +33,8 @@ export interface Column {
   leftLinkType?: ColumnLinkType;
   centerLinkType?: ColumnLinkType;
   rightLinkType?: ColumnLinkType;
+  rightFunc?: (rowData: any) => void;
+  rightFuncThis?: any;
   leftRouterLink?: (rowData: any) => any[] | null;
   centerRouterLink?: (rowData: any) => any[] | null;
   rightRouterLink?: (rowData: any) => any[] | null;
@@ -248,5 +251,8 @@ export class RowService {
     } else {
       return value;
     }
+  }
+  static callFunction(row: any, func: (row: any) => void) {
+    func(row)
   }
 }
